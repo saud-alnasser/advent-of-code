@@ -1,0 +1,5 @@
+[alias]
+scaffold = "run --quiet --release -- scaffold"
+solve = "run --quiet --release -- solve"
+tests = "run --quiet --release -- tests"
+

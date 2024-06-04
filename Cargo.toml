@@ -1,0 +1,13 @@
+[package]
+name = "aoc"
+version = "0.1.0"
+description = "an advent of code solutions"
+edition = "2021"
+default-run = "aoc"
+publish = false
+
+[dependencies]
+clap = { version = "=4.5.4", features = ["derive"] } 
+serde = { version = "=1.0.203", features = ["derive"] }
+serde_json ={ version = "=1.0.117" }
+
