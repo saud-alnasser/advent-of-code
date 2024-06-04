@@ -1,4 +1,4 @@
-aoc::puzzle!("2015:01:1");
+aoc::puzzle!("2015:01:2");
 
 enum Direction {
     Up,
@@ -35,9 +35,16 @@ impl Solution for Puzzle {
 
     fn solve(directions: Self::Input) -> Option<String> {
         let mut floor = 0;
+        let mut position = 1;
 
         for direction in directions {
             floor += i32::from(direction);
+
+            if floor < 0 {
+                return Some(position.to_string());
+            }
+
+            position += 1;
         }
 
         Some(floor.to_string())
