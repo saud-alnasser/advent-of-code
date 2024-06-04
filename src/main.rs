@@ -18,6 +18,7 @@ struct CLI {
 enum Commands {
     #[command(about = "scaffolds a new puzzle by creating all necessary files")]
     Scaffold {
+        /// puzzle to scaffold it's necessary files
         #[arg(value_parser = Puzzle::parse)]
         puzzle: Puzzle,
         /// force the creation of the files even if they already exist
@@ -26,11 +27,13 @@ enum Commands {
     },
     #[command(about = "runs a puzzle against the input data")]
     Solve {
+        // puzzle to run it's solution against the input data
         #[arg(value_parser = Puzzle::parse)]
         puzzle: Puzzle,
     },
-    #[command(about = "runs a puzzle against both the example and input data as a test")]
-    Tests {
+    #[command(about = "runs a puzzle against the examples")]
+    Examples {
+        // puzzle to run it's solution against the examples
         #[arg(value_parser = Puzzle::parse)]
         puzzle: Puzzle,
     },
@@ -42,7 +45,7 @@ fn main() {
     match cli.command {
         Some(Commands::Scaffold { puzzle, force }) => scaffold(puzzle, force),
         Some(Commands::Solve { puzzle }) => solve(puzzle),
-        Some(Commands::Tests { puzzle }) => tests(puzzle),
+        Some(Commands::Examples { puzzle }) => examples(puzzle),
         None => {
             eprintln!("no valid command provided");
             std::process::exit(1);
@@ -95,27 +98,27 @@ fn scaffold(puzzle: Puzzle, force: bool) {
 }
 
 fn solve(puzzle: Puzzle) {
-    let mut cmd = std::process::Command::new("cargo")
+    std::process::Command::new("cargo")
         .arg("run")
         .arg("--bin")
         .arg(puzzle.get_bin_name())
         .stdout(std::process::Stdio::inherit())
         .stderr(std::process::Stdio::inherit())
         .spawn()
+        .expect("failed to run cargo")
+        .wait()
         .expect("failed to run cargo");
-
-    cmd.wait().expect("failed to run cargo");
 }
 
-fn tests(puzzle: Puzzle) {
-    let mut cmd = std::process::Command::new("cargo")
+fn examples(puzzle: Puzzle) {
+    std::process::Command::new("cargo")
         .arg("test")
         .arg("--bin")
         .arg(puzzle.get_bin_name())
         .stdout(std::process::Stdio::inherit())
         .stderr(std::process::Stdio::inherit())
         .spawn()
+        .expect("failed to run cargo")
+        .wait()
         .expect("failed to run cargo");
-
-    cmd.wait().expect("failed to run cargo");
 }
