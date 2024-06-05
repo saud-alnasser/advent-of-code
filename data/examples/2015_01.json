@@ -1,0 +1,17 @@
+[
+  { "part": 1, "actual": "(())", "expected": "0" },
+  { "part": 1, "actual": "()()", "expected": "0" },
+
+  { "part": 1, "actual": "(((", "expected": "3" },
+  { "part": 1, "actual": "(()(()(", "expected": "3" },
+  { "part": 1, "actual": "))(((((", "expected": "3" },
+
+  { "part": 1, "actual": "())", "expected": "-1" },
+  { "part": 1, "actual": "))(", "expected": "-1" },
+
+  { "part": 1, "actual": ")))", "expected": "-3" },
+  { "part": 1, "actual": ")())())", "expected": "-3" },
+
+  { "part": 2, "actual": ")", "expected": "1" },
+  { "part": 2, "actual": "()())", "expected": "5" }
+]

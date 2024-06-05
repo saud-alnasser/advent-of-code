@@ -86,8 +86,9 @@ fn scaffold(puzzle: Puzzle, force: bool) {
         json!(
             [
                 {
-                    "actual": "",
-                    "expected": ""
+                    "part": 1,
+                    "actual": "1",
+                    "expected": "1"
                 }
             ]
 

@@ -1,4 +1,4 @@
-aoc::puzzle!("2015:02:1");
+aoc::puzzle!("2015:02");
 
 struct Gift {
     l: u32,
@@ -17,12 +17,23 @@ impl Gift {
 
         sides[0] * sides[1]
     }
+
+    fn ribbon(&self) -> u32 {
+        let mut sides = [self.l, self.w, self.h];
+        sides.sort_unstable();
+
+        2 * sides[0] + 2 * sides[1]
+    }
+
+    fn bow(&self) -> u32 {
+        self.l * self.w * self.h
+    }
 }
 
 impl Solution for Puzzle {
-    type Input = Vec<Gift>;
+    type Structure = Vec<Gift>;
 
-    fn parse(input: &str) -> Self::Input {
+    fn parse(input: &str) -> Self::Structure {
         input
             .lines()
             .map(|line| {
@@ -37,11 +48,21 @@ impl Solution for Puzzle {
             .collect()
     }
 
-    fn solve(gifts: Self::Input) -> Option<String> {
+    fn solve_part1(gifts: Self::Structure) -> Option<String> {
         Some(
             gifts
                 .iter()
                 .map(|gift| gift.area() + gift.slack())
+                .sum::<u32>()
+                .to_string(),
+        )
+    }
+
+    fn solve_part2(gifts: Self::Structure) -> Option<String> {
+        Some(
+            gifts
+                .iter()
+                .map(|gift| gift.ribbon() + gift.bow())
                 .sum::<u32>()
                 .to_string(),
         )
