@@ -1,6 +1,6 @@
 [
-  { "part": 1, "actual": "2x3x4", "expected": "58" },
-  { "part": 1, "actual": "1x1x10", "expected": "43" },
-  { "part": 2, "actual": "2x3x4", "expected": "34" },
-  { "part": 2, "actual": "1x1x10", "expected": "14" }
+  { "part": 1, "sample": "2x3x4", "expected": "58" },
+  { "part": 1, "sample": "1x1x10", "expected": "43" },
+  { "part": 2, "sample": "2x3x4", "expected": "34" },
+  { "part": 2, "sample": "1x1x10", "expected": "14" }
 ]

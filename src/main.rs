@@ -87,7 +87,7 @@ fn scaffold(puzzle: Puzzle, force: bool) {
             [
                 {
                     "part": 1,
-                    "actual": "1",
+                    "sample": "1",
                     "expected": "1"
                 }
             ]

@@ -78,12 +78,12 @@ impl Runner {
         let (result, time) =
             Runner::timed(|| T::solve_part1(T::parse(&input)).expect("unable to solve part 1"));
 
-        println!("puzzle[0]: {} result: {} time: {}", name, result, time);
+        println!("puzzle(1): {} result: {} time: {}", name, result, time);
 
         let (result, time) =
             Runner::timed(|| T::solve_part2(T::parse(&input)).expect("unable to solve part 2"));
 
-        println!("puzzle[1]: {} result: {} time: {}", name, result, time);
+        println!("puzzle(2): {} result: {} time: {}", name, result, time);
     }
 
     pub fn examples<T: Solution + ToString>(name: T, part: u8) {
@@ -107,7 +107,7 @@ impl Runner {
             };
 
             assert_eq!(
-                solve(T::parse(&example.actual))
+                solve(T::parse(&example.sample))
                     .expect(format!("unable to solve part {}", part).as_str()),
                 example.expected
             );
@@ -146,7 +146,7 @@ impl Runner {
 #[derive(Debug, Serialize, Deserialize)]
 struct Example {
     pub part: u8,
-    pub actual: String,
+    pub sample: String,
     pub expected: String,
 }
 
