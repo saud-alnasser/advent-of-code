@@ -1,0 +1,4 @@
+[
+  { "part": 1, "actual": "abcdef", "expected": "609043" },
+  { "part": 1, "actual": "pqrstuv", "expected": "1048970" }
+]

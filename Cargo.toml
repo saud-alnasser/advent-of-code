@@ -10,4 +10,5 @@ publish = false
 clap = { version = "=4.5.4", features = ["derive"] } 
 serde = { version = "=1.0.203", features = ["derive"] }
 serde_json ={ version = "=1.0.117" }
-
+md5 = { version = "=0.7.0" } 
+rayon = { version = "=1.10.0" }
