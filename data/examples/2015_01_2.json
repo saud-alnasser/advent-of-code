@@ -1,0 +1,4 @@
+[
+  { "actual": ")", "expected": "1" },
+  { "actual": "()())", "expected": "5" }
+]
