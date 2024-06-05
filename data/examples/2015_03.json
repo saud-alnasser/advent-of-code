@@ -1,0 +1,9 @@
+[
+  { "part": 1, "actual": ">", "expected": "2" },
+  { "part": 1, "actual": "^>v<", "expected": "4" },
+  { "part": 1, "actual": "^v^v^v^v^v", "expected": "2" },
+
+  { "part": 2, "actual": "^v", "expected": "3" },
+  { "part": 2, "actual": "^>v<", "expected": "3" },
+  { "part": 2, "actual": "^v^v^v^v^v", "expected": "11" }
+]
