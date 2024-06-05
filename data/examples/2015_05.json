@@ -1,0 +1,12 @@
+[
+  { "part": 1, "actual": "ugknbfddgicrmopn", "expected": "1" },
+  { "part": 1, "actual": "aaa", "expected": "1" },
+  { "part": 1, "actual": "jchzalrnumimnmhp", "expected": "0" },
+  { "part": 1, "actual": "haegwjzuvuyypxyu", "expected": "0" },
+  { "part": 1, "actual": "dvszwmarrgswjxmb", "expected": "0" },
+
+  { "part": 2, "actual": "qjhvhtzxzqqjkmpb", "expected": "0" },
+  { "part": 2, "actual": "xxyxx", "expected": "0" },
+  { "part": 2, "actual": "uurcxstgmygtbstg", "expected": "0" },
+  { "part": 2, "actual": "ieodomkazucvgmuy", "expected": "0" }
+]
