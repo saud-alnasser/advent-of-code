@@ -25,13 +25,13 @@ impl AddAssign for Vector {
 }
 
 impl Solution for Puzzle {
-    type Structure = Vec<Vector>;
+    type Input = Vec<Vector>;
 
-    fn parse(input: &str) -> Self::Structure {
+    fn parse(input: &str) -> Self::Input {
         input.chars().map(Vector::from).collect()
     }
 
-    fn solve_part1(vectors: Self::Structure) -> Option<String> {
+    fn solve_part1(vectors: Self::Input) -> Option<String> {
         let mut visited = std::collections::HashSet::new();
 
         let mut santa_position = Vector(0, 0);
@@ -45,7 +45,7 @@ impl Solution for Puzzle {
         Some(visited.len().to_string())
     }
 
-    fn solve_part2(vectors: Self::Structure) -> Option<String> {
+    fn solve_part2(vectors: Self::Input) -> Option<String> {
         let mut visited = std::collections::HashSet::new();
 
         let mut santa_position = Vector(0, 0);

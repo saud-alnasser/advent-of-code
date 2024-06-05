@@ -27,13 +27,13 @@ impl From<Direction> for i32 {
 }
 
 impl Solution for Puzzle {
-    type Structure = Vec<Direction>;
+    type Input = Vec<Direction>;
 
-    fn parse(input: &str) -> Self::Structure {
+    fn parse(input: &str) -> Self::Input {
         input.chars().map(Direction::from).collect()
     }
 
-    fn solve_part1(directions: Self::Structure) -> Option<String> {
+    fn solve_part1(directions: Self::Input) -> Option<String> {
         let mut floor = 0;
 
         for direction in directions {
@@ -43,7 +43,7 @@ impl Solution for Puzzle {
         Some(floor.to_string())
     }
 
-    fn solve_part2(directions: Self::Structure) -> Option<String> {
+    fn solve_part2(directions: Self::Input) -> Option<String> {
         let mut floor = 0;
         let mut position = 1;
 

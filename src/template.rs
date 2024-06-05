@@ -56,13 +56,13 @@ impl Puzzle {
 }
 
 pub trait Solution {
-    type Structure;
+    type Input;
 
-    fn parse(input: &str) -> Self::Structure;
+    fn parse(input: &str) -> Self::Input;
 
-    fn solve_part1(structure: Self::Structure) -> Option<String>;
+    fn solve_part1(input: Self::Input) -> Option<String>;
 
-    fn solve_part2(structure: Self::Structure) -> Option<String>;
+    fn solve_part2(input: Self::Input) -> Option<String>;
 }
 
 pub struct Runner;
