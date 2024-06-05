@@ -31,9 +31,9 @@ impl Gift {
 }
 
 impl Solution for Puzzle {
-    type Structure = Vec<Gift>;
+    type Input = Vec<Gift>;
 
-    fn parse(input: &str) -> Self::Structure {
+    fn parse(input: &str) -> Self::Input {
         input
             .lines()
             .map(|line| {
@@ -48,7 +48,7 @@ impl Solution for Puzzle {
             .collect()
     }
 
-    fn solve_part1(gifts: Self::Structure) -> Option<String> {
+    fn solve_part1(gifts: Self::Input) -> Option<String> {
         Some(
             gifts
                 .iter()
@@ -58,7 +58,7 @@ impl Solution for Puzzle {
         )
     }
 
-    fn solve_part2(gifts: Self::Structure) -> Option<String> {
+    fn solve_part2(gifts: Self::Input) -> Option<String> {
         Some(
             gifts
                 .iter()
