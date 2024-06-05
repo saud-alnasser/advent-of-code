@@ -75,14 +75,12 @@ impl Runner {
         let input = std::fs::read_to_string(puzzle.get_input_path()).expect("unable to read input");
 
         let part1 = T::solve_part1(T::parse(&input)).expect("unable to solve part 1");
+
+        println!("puzzle[0]: {} result: {}", puzzle.to_string(), part1);
+
         let part2 = T::solve_part2(T::parse(&input)).expect("unable to solve part 2");
 
-        println!(
-            "puzzle: {} result: ({}, {})",
-            puzzle.to_string(),
-            part1,
-            part2
-        );
+        println!("puzzle[1]: {} result: {}", puzzle.to_string(), part2);
     }
 
     pub fn examples<T: Solution + ToString>(name: T) {
