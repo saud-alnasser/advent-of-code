@@ -72,15 +72,18 @@ impl Runner {
         let puzzle = Puzzle::parse(&name.to_string())
             .expect("unable to parse puzzle, expected format: event:day:part");
 
+        let name = puzzle.to_string();
         let input = std::fs::read_to_string(puzzle.get_input_path()).expect("unable to read input");
 
-        let part1 = T::solve_part1(T::parse(&input)).expect("unable to solve part 1");
+        let (result, time) =
+            Runner::timed(|| T::solve_part1(T::parse(&input)).expect("unable to solve part 1"));
 
-        println!("puzzle[0]: {} result: {}", puzzle.to_string(), part1);
+        println!("puzzle[0]: {} result: {} time: {}", name, result, time);
 
-        let part2 = T::solve_part2(T::parse(&input)).expect("unable to solve part 2");
+        let (result, time) =
+            Runner::timed(|| T::solve_part2(T::parse(&input)).expect("unable to solve part 2"));
 
-        println!("puzzle[1]: {} result: {}", puzzle.to_string(), part2);
+        println!("puzzle[1]: {} result: {} time: {}", name, result, time);
     }
 
     pub fn examples<T: Solution + ToString>(name: T) {
@@ -105,6 +108,34 @@ impl Runner {
                 _ => panic!("part must be 1 or 2"),
             }
         }
+    }
+
+    fn timed<T, F: FnOnce() -> T>(f: F) -> (T, String) {
+        let timer = std::time::Instant::now();
+        let result = f();
+        let elapsed = timer.elapsed();
+
+        let secs = elapsed.as_secs();
+
+        if secs > 0 {
+            return (result, format!("{}s", secs));
+        }
+
+        let millis = elapsed.as_millis();
+
+        if millis > 0 {
+            return (result, format!("{}ms", millis));
+        }
+
+        let macros = elapsed.as_micros();
+
+        if macros > 0 {
+            return (result, format!("{}µs", macros));
+        }
+
+        let nanos = elapsed.as_nanos();
+
+        (result, format!("{}ns", nanos))
     }
 }
 
