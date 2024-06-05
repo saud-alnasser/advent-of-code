@@ -86,7 +86,7 @@ impl Runner {
         println!("puzzle[1]: {} result: {} time: {}", name, result, time);
     }
 
-    pub fn examples<T: Solution + ToString>(name: T) {
+    pub fn examples<T: Solution + ToString>(name: T, part: u8) {
         let puzzle = Puzzle::parse(&name.to_string())
             .expect("unable to parse puzzle, expected format: event:day:part");
 
@@ -95,18 +95,22 @@ impl Runner {
         )
         .expect("unable to parse examples");
 
-        for example in examples {
-            match example.part {
-                1 => assert_eq!(
-                    T::solve_part1(T::parse(&example.actual)).expect("unable to solve part 1"),
-                    example.expected
-                ),
-                2 => assert_eq!(
-                    T::solve_part2(T::parse(&example.actual)).expect("unable to solve part 2"),
-                    example.expected
-                ),
-                _ => panic!("part must be 1 or 2"),
-            }
+        for example in examples
+            .iter()
+            .filter(|e| e.part == part)
+            .collect::<Vec<&Example>>()
+        {
+            let solve = match part {
+                1 => T::solve_part1,
+                2 => T::solve_part2,
+                _ => panic!("invalid part"),
+            };
+
+            assert_eq!(
+                solve(T::parse(&example.actual))
+                    .expect(format!("unable to solve part {}", part).as_str()),
+                example.expected
+            );
         }
     }
 
@@ -168,8 +172,13 @@ macro_rules! puzzle {
             use super::*;
 
             #[test]
-            fn test_puzzle() {
-                Runner::examples(Puzzle);
+            fn test_puzzle_part1() {
+                Runner::examples(Puzzle, 1);
+            }
+
+            #[test]
+            fn test_puzzle_part2() {
+                Runner::examples(Puzzle, 2);
             }
         }
     };
