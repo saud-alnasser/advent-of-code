@@ -1,0 +1,8 @@
+[
+  { "part": 1, "sample": "turn on 0,0 through 999,999", "expected": "1000000" },
+  { "part": 1, "sample": "toggle 0,0 through 999,0", "expected": "1000" },
+  { "part": 1, "sample": "turn off 499,499 through 500,500", "expected": "0" },
+
+  { "part": 2, "sample": "turn on 0,0 through 0,0", "expected": "1" },
+  { "part": 2, "sample": "toggle 0,0 through 999,999", "expected": "2000000" }
+]
