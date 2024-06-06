@@ -1,12 +1,12 @@
 [
-  { "part": 1, "actual": "ugknbfddgicrmopn", "expected": "1" },
-  { "part": 1, "actual": "aaa", "expected": "1" },
-  { "part": 1, "actual": "jchzalrnumimnmhp", "expected": "0" },
-  { "part": 1, "actual": "haegwjzuvuyypxyu", "expected": "0" },
-  { "part": 1, "actual": "dvszwmarrgswjxmb", "expected": "0" },
+  { "part": 1, "sample": "ugknbfddgicrmopn", "expected": "1" },
+  { "part": 1, "sample": "aaa", "expected": "1" },
+  { "part": 1, "sample": "jchzalrnumimnmhp", "expected": "0" },
+  { "part": 1, "sample": "haegwjzuvuyypxyu", "expected": "0" },
+  { "part": 1, "sample": "dvszwmarrgswjxmb", "expected": "0" },
 
-  { "part": 2, "actual": "qjhvhtzxzqqjkmpb", "expected": "0" },
-  { "part": 2, "actual": "xxyxx", "expected": "0" },
-  { "part": 2, "actual": "uurcxstgmygtbstg", "expected": "0" },
-  { "part": 2, "actual": "ieodomkazucvgmuy", "expected": "0" }
+  { "part": 2, "sample": "qjhvhtzxzqqjkmpb", "expected": "0" },
+  { "part": 2, "sample": "xxyxx", "expected": "0" },
+  { "part": 2, "sample": "uurcxstgmygtbstg", "expected": "0" },
+  { "part": 2, "sample": "ieodomkazucvgmuy", "expected": "0" }
 ]
