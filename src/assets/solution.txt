@@ -1,0 +1,11 @@
+crate::puzzle!("%puzzle%");
+
+impl Solution for Puzzle {
+    type Input = ();
+
+    fn parse(input: &str) -> Self::Input {}
+
+    fn solve(structure: Self::Input) -> Option<String> {
+        None
+    }
+}

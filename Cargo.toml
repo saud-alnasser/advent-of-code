@@ -7,8 +7,9 @@ default-run = "aoc"
 publish = false
 
 [dependencies]
-clap = { version = "=4.5.4", features = ["derive"] } 
-serde = { version = "=1.0.203", features = ["derive"] }
-serde_json ={ version = "=1.0.117" }
-md5 = { version = "=0.7.0" } 
+clap = { version = "=4.5.41", features = ["derive"] } 
+serde = { version = "=1.0.219", features = ["derive"] }
+serde_json ={ version = "=1.0.141" }
+md5 = { version = "=0.8.0" } 
 rayon = { version = "=1.10.0" }
+aoc-client = { version = "=0.2.0" }

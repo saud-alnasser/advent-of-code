@@ -1,0 +1,5 @@
+[
+  { "sample": "^v", "expected": "3" },
+  { "sample": "^>v<", "expected": "3" },
+  { "sample": "^v^v^v^v^v", "expected": "11" }
+]

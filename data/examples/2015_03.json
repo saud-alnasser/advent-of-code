@@ -1,9 +1,0 @@
-[
-  { "part": 1, "sample": ">", "expected": "2" },
-  { "part": 1, "sample": "^>v<", "expected": "4" },
-  { "part": 1, "sample": "^v^v^v^v^v", "expected": "2" },
-
-  { "part": 2, "sample": "^v", "expected": "3" },
-  { "part": 2, "sample": "^>v<", "expected": "3" },
-  { "part": 2, "sample": "^v^v^v^v^v", "expected": "11" }
-]
