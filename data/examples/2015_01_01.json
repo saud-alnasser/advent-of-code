@@ -1,0 +1,11 @@
+[
+  { "sample": "(())", "expected": "0" },
+  { "sample": "()()", "expected": "0" },
+  { "sample": "(((", "expected": "3" },
+  { "sample": "(()(()(", "expected": "3" },
+  { "sample": "))(((((", "expected": "3" },
+  { "sample": "())", "expected": "-1" },
+  { "sample": "))(", "expected": "-1" },
+  { "sample": ")))", "expected": "-3" },
+  { "sample": ")())())", "expected": "-3" }
+]

@@ -1,11 +1,8 @@
+use aoc::assets;
 use aoc::template::Puzzle;
+use aoc_client::AocClient;
 use clap::{arg, command, Parser, Subcommand};
 use serde_json::json;
-
-const PUZZLE_TEMPLATE: &str = include_str!(concat!(
-    env!("CARGO_MANIFEST_DIR"),
-    "/src/assets/puzzle.txt"
-));
 
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
@@ -54,39 +51,70 @@ fn main() {
 }
 
 fn scaffold(puzzle: Puzzle, force: bool) {
-    let bin = puzzle.get_bin_path();
-    let input = puzzle.get_input_path();
-    let examples = puzzle.get_examples_path();
-
     if !force {
-        if std::path::Path::new(&bin).exists() {
-            eprintln!("bin file already exists: {}", bin);
+        if std::path::Path::new(&puzzle.dir_path).exists() {
+            eprintln!("puzzle already exists: {}", puzzle.dir_path);
             return;
         }
 
-        if std::path::Path::new(&input).exists() {
-            eprintln!("input file already exists: {}", input);
+        if std::path::Path::new(&puzzle.bin_file_path).exists() {
+            eprintln!("puzzle already exists: {}", puzzle.bin_file_path);
             return;
         }
 
-        if std::path::Path::new(&examples).exists() {
-            eprintln!("examples file already exists: {}", examples);
+        if std::path::Path::new(&puzzle.examples_path).exists() {
+            eprintln!("puzzle file already exists: {}", puzzle.examples_path);
             return;
         }
     }
 
+    // create puzzle mod.rs and solution.rs files
+    if !std::path::Path::new(&puzzle.dir_path).exists() {
+        std::fs::create_dir(&puzzle.dir_path).expect("failed to create puzzle dir");
+    }
+
+    std::fs::write(&puzzle.mod_file_path, assets::mod_template(&puzzle))
+        .expect("failed to write mod file");
+
+    std::fs::write(&puzzle.solution_path, assets::solution_template(&puzzle))
+        .expect("failed to write solution file");
+
+    // ensure puzzles mod file contains the new puzzle
+
+    let mut puzzles_mod_file =
+        std::fs::read_to_string("src/puzzles/mod.rs").expect("failed to read puzzles mod");
+
+    if !puzzles_mod_file.contains(&puzzle.dir_name) {
+        puzzles_mod_file.push_str(&format!("pub mod {};", puzzle.dir_name));
+    }
+
+    std::fs::write("src/puzzles/mod.rs", puzzles_mod_file).expect("failed to write puzzles mod");
+
+    // download puzzle description and input
+    let client = AocClient::builder()
+        .session_cookie_from_default_locations()
+        .expect("failed to get session cookie from default locations on client build")
+        .year(puzzle.year.parse().expect("failed to parse year"))
+        .expect("failed to set year on client build")
+        .day(puzzle.day.parse().expect("failed to parse day"))
+        .expect("failed to set day on client build")
+        .input_filename(&puzzle.input_path)
+        .puzzle_filename(&puzzle.description_path)
+        .overwrite_files(true)
+        .build()
+        .expect("failed to build aoc client");
+
+    client.save_input().expect("failed to save input");
+    client
+        .save_puzzle_markdown()
+        .expect("failed to save puzzle");
+
+    // create examples file (empty)
     std::fs::write(
-        bin,
-        PUZZLE_TEMPLATE.replace("%puzzle%", puzzle.to_string().as_str()),
-    )
-    .expect("failed to write bin file");
-    std::fs::write(input, "").expect("failed to write input file");
-    std::fs::write(
-        examples,
+        &puzzle.examples_path,
         json!(
             [
                 {
-                    "part": 1,
                     "sample": "1",
                     "expected": "1"
                 }
@@ -96,13 +124,17 @@ fn scaffold(puzzle: Puzzle, force: bool) {
         .to_string(),
     )
     .expect("failed to write examples file");
+
+    // create puzzle bin_file
+    std::fs::write(&puzzle.bin_file_path, assets::bin_template(&puzzle))
+        .expect("failed to write bin file");
 }
 
 fn solve(puzzle: Puzzle) {
     std::process::Command::new("cargo")
         .arg("run")
         .arg("--bin")
-        .arg(puzzle.get_bin_name())
+        .arg(&puzzle.id)
         .stdout(std::process::Stdio::inherit())
         .stderr(std::process::Stdio::inherit())
         .spawn()
@@ -115,7 +147,7 @@ fn examples(puzzle: Puzzle) {
     std::process::Command::new("cargo")
         .arg("test")
         .arg("--bin")
-        .arg(puzzle.get_bin_name())
+        .arg(&puzzle.id)
         .stdout(std::process::Stdio::inherit())
         .stderr(std::process::Stdio::inherit())
         .spawn()

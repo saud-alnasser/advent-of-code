@@ -1,0 +1,7 @@
+[
+  { "sample": "ugknbfddgicrmopn", "expected": "1" },
+  { "sample": "aaa", "expected": "1" },
+  { "sample": "jchzalrnumimnmhp", "expected": "0" },
+  { "sample": "haegwjzuvuyypxyu", "expected": "0" },
+  { "sample": "dvszwmarrgswjxmb", "expected": "0" }
+]

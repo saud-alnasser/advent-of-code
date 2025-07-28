@@ -1,0 +1,4 @@
+[
+  { "sample": ")", "expected": "1" },
+  { "sample": "()())", "expected": "5" }
+]

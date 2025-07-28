@@ -1,0 +1,4 @@
+[
+  { "sample": "2x3x4", "expected": "58" },
+  { "sample": "1x1x10", "expected": "43" }
+]
