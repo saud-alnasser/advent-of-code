@@ -123,7 +123,7 @@ impl Runner {
             .expect("unable to parse puzzle, expected format: event:day:part");
 
         let input = std::fs::read_to_string(&puzzle.input_path).expect("unable to read input");
-        let parsed = T::parse(&input);
+        let parsed = T::parse(&input.trim_end());
         let (output, time) = Runner::timed(|| T::solve(parsed).expect("unable to solve solution"));
 
         let client = AocClient::builder()

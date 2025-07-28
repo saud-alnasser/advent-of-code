@@ -85,7 +85,7 @@ fn scaffold(puzzle: Puzzle, force: bool) {
         std::fs::read_to_string("src/puzzles/mod.rs").expect("failed to read puzzles mod");
 
     if !puzzles_mod_file.contains(&puzzle.dir_name) {
-        puzzles_mod_file.push_str(&format!("pub mod {};", puzzle.dir_name));
+        puzzles_mod_file.push_str(&format!("\npub mod {};", puzzle.dir_name));
     }
 
     std::fs::write("src/puzzles/mod.rs", puzzles_mod_file).expect("failed to write puzzles mod");
