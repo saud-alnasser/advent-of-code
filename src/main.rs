@@ -37,6 +37,8 @@ enum Commands {
 }
 
 fn main() {
+    tracing_subscriber::fmt::init();
+
     let cli = CLI::parse();
 
     match cli.command {

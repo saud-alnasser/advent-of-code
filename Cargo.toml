@@ -7,7 +7,9 @@ default-run = "aoc"
 publish = false
 
 [dependencies]
-clap = { version = "=4.5.41", features = ["derive"] } 
+tracing = { version = "=0.1.41", default-features = false }
+tracing-subscriber = { version = "=0.3.19", features = ["env-filter"] }
+clap = { version = "=4.5.42", features = ["derive"] } 
 serde = { version = "=1.0.219", features = ["derive"] }
 serde_json ={ version = "=1.0.141" }
 md5 = { version = "=0.8.0" } 
