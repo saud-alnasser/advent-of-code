@@ -11,6 +11,11 @@ const PUZZLE_SOLUTION_TEMPLATE: &str = include_str!(concat!(
 const PUZZLE_MOD_TEMPLATE: &str =
     include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/src/assets/mod.txt"));
 
+const PUZZLE_EXAMPLE_TEMPLATE: &str = include_str!(concat!(
+    env!("CARGO_MANIFEST_DIR"),
+    "/src/assets/example.txt"
+));
+
 pub fn bin_template(puzzle: &Puzzle) -> String {
     PUZZLE_BIN_TEMPLATE.replace("%puzzle%", &puzzle.dir_name)
 }
@@ -21,4 +26,8 @@ pub fn solution_template(puzzle: &Puzzle) -> String {
 
 pub fn mod_template(puzzle: &Puzzle) -> String {
     PUZZLE_MOD_TEMPLATE.replace("%puzzle%", &puzzle.id)
+}
+
+pub fn example_template() -> String {
+    PUZZLE_EXAMPLE_TEMPLATE.to_string()
 }

@@ -2,7 +2,6 @@ use aoc::assets;
 use aoc::template::Puzzle;
 use aoc_client::AocClient;
 use clap::{arg, command, Parser, Subcommand};
-use serde_json::json;
 
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
@@ -112,20 +111,8 @@ fn scaffold(puzzle: Puzzle, force: bool) {
         .expect("failed to save puzzle");
 
     // create examples file (empty)
-    std::fs::write(
-        &puzzle.examples_path,
-        json!(
-            [
-                {
-                    "sample": "1",
-                    "expected": "1"
-                }
-            ]
-
-        )
-        .to_string(),
-    )
-    .expect("failed to write examples file");
+    std::fs::write(&puzzle.examples_path, assets::example_template())
+        .expect("failed to write examples file");
 
     // create puzzle bin_file
     std::fs::write(&puzzle.bin_file_path, assets::bin_template(&puzzle))
